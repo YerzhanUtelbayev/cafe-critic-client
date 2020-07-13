@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedReactRouter } from 'connected-react-router';
 
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 
+import { store, history } from './store';
+
 import 'fontsource-roboto/latin-ext.css'; // TODO: Configure to load specific subsets
 
-ReactDOM.render(
+const app = (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
+    <Provider store={store}>
+      <ConnectedReactRouter history={history}>
+        <App />
+      </ConnectedReactRouter>
+    </Provider>
+  </React.StrictMode>
 );
+
+ReactDOM.render(app, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
