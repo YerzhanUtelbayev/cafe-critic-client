@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 
+import 'fontsource-roboto/latin-ext.css'; // TODO: Configure to load specific subsets
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
