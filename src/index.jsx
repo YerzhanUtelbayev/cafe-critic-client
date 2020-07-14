@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedReactRouter } from 'connected-react-router';
+import { ConnectedRouter } from 'connected-react-router';
 
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
@@ -13,9 +13,9 @@ import 'fontsource-roboto/latin-ext.css'; // TODO: Configure to load specific su
 const app = (
   <React.StrictMode>
     <Provider store={store}>
-      <ConnectedReactRouter history={history}>
+      <ConnectedRouter history={history}>
         <App />
-      </ConnectedReactRouter>
+      </ConnectedRouter>
     </Provider>
   </React.StrictMode>
 );

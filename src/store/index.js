@@ -31,12 +31,12 @@ const persistedState = loadStateFromLocalStorage();
 
 export const store = createStore(rootReducer, persistedState, enhancers);
 
-store.subscribe(() => {
-  saveStateToLocalStorage({
-    users: {
-      user: store.getState().users.user,
-    },
-  });
-});
+// store.subscribe(() => {
+//   saveStateToLocalStorage({
+//     users: {
+//       user: store.getState().users.user,
+//     },
+//   });
+// });
 
 sagaMiddleware.run(watchSagas);
