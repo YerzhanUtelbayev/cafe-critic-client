@@ -1,6 +1,6 @@
 import axiosInstance from './axios-api';
 
-export const registerUserRequest = async (userData) => {
+export const handleUserRegistration = async (userData) => {
   const response = await axiosInstance.post('/auth/register', userData);
   const { data } = response;
   if (response.status >= 400 && data) {
@@ -9,7 +9,7 @@ export const registerUserRequest = async (userData) => {
   return response;
 };
 
-export const loginUser = async (userData) => {
+export const handleUserLogin = async (userData) => {
   const response = await axiosInstance.post('/auth/login', userData);
   const { data } = response;
   if (response.status >= 400) {
@@ -18,7 +18,7 @@ export const loginUser = async (userData) => {
   return data;
 };
 
-export const logoutUser = async () => {
+export const handleUserLogout = async () => {
   const response = await axiosInstance.post('/auth/logout');
   const { data } = response;
   if (response.status >= 400) {
