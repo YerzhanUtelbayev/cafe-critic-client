@@ -1,0 +1,18 @@
+const {
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAILURE,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAILURE,
+} = require('./actionTypes');
+
+export const registerUserSuccess = () => ({ type: REGISTER_USER_SUCCESS });
+export const registerUserFailure = (error) => ({
+  type: REGISTER_USER_FAILURE,
+  payload: error,
+});
+
+export const loginUserSuccess = () => ({ type: LOGIN_USER_SUCCESS });
+export const loginUserFailure = (error) => ({
+  type: LOGIN_USER_FAILURE,
+  payload: error,
+});
