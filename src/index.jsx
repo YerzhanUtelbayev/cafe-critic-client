@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import { store, history } from './store';
 
 import 'fontsource-roboto/latin-ext.css'; // TODO: Configure to load specific subsets
+import './index.css';
 
 const app = (
   <React.StrictMode>
