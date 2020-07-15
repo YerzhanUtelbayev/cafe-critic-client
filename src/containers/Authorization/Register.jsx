@@ -20,7 +20,6 @@ const Register = () => (
           country: '',
         },
       }}
-      onSubmit={(values) => console.dir(values)}
     >
       <Form>
         <FormInput name="firstName" label="First name" required />
@@ -36,7 +35,5 @@ const Register = () => (
     </Formik>
   </>
 );
-
-Register.propTypes = {};
 
 export default Register;
