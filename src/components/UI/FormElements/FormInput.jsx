@@ -11,6 +11,7 @@ const FormInput = ({ label, type, ...props }) => {
       className="form-control"
       type={type || 'text'}
       helperText={meta.touched && meta.error && meta.error}
+      variant="outlined"
       fullWidth
       {...field}
       {...props}
