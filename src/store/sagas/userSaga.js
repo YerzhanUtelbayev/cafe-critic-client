@@ -1,4 +1,4 @@
-import { takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put, call } from 'redux-saga/effects';
 
 import {
   handleUserRegistration,
@@ -17,7 +17,7 @@ import {
 
 function* sendUserRegistrationData(action) {
   try {
-    yield handleUserRegistration(action.payload);
+    yield call(handleUserRegistration, action.payload);
     yield put(registerUserSuccess());
   } catch (error) {
     yield put(registerUserFailure(error));
@@ -26,7 +26,7 @@ function* sendUserRegistrationData(action) {
 
 function* sendUserLoginData(action) {
   try {
-    yield handleUserLogin(action.payload);
+    yield call(handleUserLogin, action.payload);
     yield put(loginUserSuccess());
   } catch (error) {
     yield put(loginUserFailure(error));

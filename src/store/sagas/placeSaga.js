@@ -1,4 +1,4 @@
-import { takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put, call } from 'redux-saga/effects';
 
 import {
   handlePlaceCreation,
@@ -17,7 +17,7 @@ import {
 
 function* sendPlaceCreationData({ payload }) {
   try {
-    yield handlePlaceCreation(payload);
+    yield call(handlePlaceCreation, payload);
     yield put(createPlaceSuccess());
   } catch (error) {
     yield put(createPlaceFailure(error));
@@ -26,7 +26,7 @@ function* sendPlaceCreationData({ payload }) {
 
 function* fetchPlacesData() {
   try {
-    const placesList = yield handleFetchPlaces();
+    const placesList = yield call(handleFetchPlaces);
     yield put(fetchPlacesSuccess(placesList));
   } catch (error) {
     yield put(fetchPlacesFailure(error));
