@@ -15,5 +15,5 @@ export const handleFetchPlaces = async () => {
   if (response.status >= 400) {
     throw new Error(data.errors);
   }
-  return response;
+  return data;
 };

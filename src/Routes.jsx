@@ -4,9 +4,13 @@ import { Switch, Route } from 'react-router-dom';
 import Register from './containers/Authorization/Register';
 import Login from './containers/Authorization/Login';
 import AddPlace from './containers/AddPlace/AddPlace';
+import Places from './containers/Places/Places';
 
 const Routes = () => (
   <Switch>
+    <Route path="/" exact>
+      <Places />
+    </Route>
     <Route path="/register" exact>
       <Register />
     </Route>

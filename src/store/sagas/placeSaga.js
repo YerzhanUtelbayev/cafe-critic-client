@@ -1,8 +1,19 @@
 import { takeLatest, put } from 'redux-saga/effects';
 
-import { handlePlaceCreation } from '../../network/apis/placesRequests';
-import { createPlaceSuccess, createPlaceFailure } from '../actions/places';
-import { CREATE_PLACE_REQUEST } from '../actions/actionTypes';
+import {
+  handlePlaceCreation,
+  handleFetchPlaces,
+} from '../../network/apis/placesRequests';
+import {
+  createPlaceSuccess,
+  createPlaceFailure,
+  fetchPlacesSuccess,
+  fetchPlacesFailure,
+} from '../actions/places';
+import {
+  CREATE_PLACE_REQUEST,
+  FETCH_PLACES_REQUEST,
+} from '../actions/actionTypes';
 
 function* sendPlaceCreationData({ payload }) {
   try {
@@ -13,6 +24,19 @@ function* sendPlaceCreationData({ payload }) {
   }
 }
 
-export default function* watchPlaceCreation() {
+function* fetchPlacesData() {
+  try {
+    const placesList = yield handleFetchPlaces();
+    yield put(fetchPlacesSuccess(placesList));
+  } catch (error) {
+    yield put(fetchPlacesFailure(error));
+  }
+}
+
+export function* watchPlaceCreation() {
   yield takeLatest(CREATE_PLACE_REQUEST, sendPlaceCreationData);
+}
+
+export function* watchPlacesRequest() {
+  yield takeLatest(FETCH_PLACES_REQUEST, fetchPlacesData);
 }
