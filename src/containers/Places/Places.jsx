@@ -3,33 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { fetchPlacesRequest } from '../../store/actions/places';
+import { PLACE } from '../../utilities/propTypes';
+import PlacesList from './PlacesList/PlacesList';
 
 const Places = ({ places, fetchPlaces }) => {
   useEffect(() => {
     fetchPlaces();
   }, [fetchPlaces]);
 
-  return <div>Places will be listed here</div>;
+  return (
+    <>
+      <PlacesList places={places} />
+    </>
+  );
 };
 
 Places.propTypes = {
   fetchPlaces: PropTypes.func.isRequired,
-  places: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string,
-      owner: PropTypes.string,
-      title: PropTypes.string,
-      description: PropTypes.string,
-      promoImage: PropTypes.string,
-      reviewsNumber: PropTypes.number,
-      ratings: PropTypes.shape({
-        overall: PropTypes.number,
-        food: PropTypes.number,
-        service: PropTypes.number,
-        interior: PropTypes.number,
-      }),
-    }),
-  ),
+  places: PropTypes.arrayOf(PLACE),
 };
 
 Places.defaultProps = {
