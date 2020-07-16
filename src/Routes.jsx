@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Register from './containers/Authorization/Register';
 import Login from './containers/Authorization/Login';
+import AddPlace from './containers/AddPlace/AddPlace';
 
 const Routes = () => (
   <Switch>
@@ -11,6 +12,9 @@ const Routes = () => (
     </Route>
     <Route path="/login" exact>
       <Login />
+    </Route>
+    <Route path="/places/new" exact>
+      <AddPlace />
     </Route>
   </Switch>
 );
