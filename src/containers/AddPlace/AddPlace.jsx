@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Formik, Form } from 'formik';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import { createPlaceRequest } from '../../store/actions/places';
 import FormInput from '../../components/UI/FormElements/FormInput';
 import FileInput from '../../components/UI/FormElements/FileInput';
+import CheckboxField from '../../components/UI/FormElements/CheckboxField';
 
 const AddPlace = ({ createPlace }) => {
   const handleSubmit = (values) => {
@@ -14,7 +15,7 @@ const AddPlace = ({ createPlace }) => {
     Object.keys(values).forEach((key) => {
       formData.append(`${key}`, values[key]);
     });
-    createPlace(values);
+    createPlace(formData);
   };
   return (
     <>
@@ -23,6 +24,7 @@ const AddPlace = ({ createPlace }) => {
           title: '',
           description: '',
           promoImage: '',
+          agreement: false,
         }}
         onSubmit={handleSubmit}
       >
@@ -36,6 +38,14 @@ const AddPlace = ({ createPlace }) => {
             rows="5"
           />
           <FileInput name="promoImage" label="Place photo" type="file" />
+          <div>
+            <CheckboxField name="agreement" label="I understand" required />
+            <Typography>
+              By submitting this form, you agree that the following information
+              will be submitted to the public domain, and administrators of this
+              site will have full control over the said information
+            </Typography>
+          </div>
           <Button type="submit">Submit</Button>
         </Form>
       </Formik>

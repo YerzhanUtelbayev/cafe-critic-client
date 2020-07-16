@@ -6,6 +6,7 @@ import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 
 import usersReducer from './reducers/users';
+import placesReducer from './reducers/places';
 import watchSagas from './sagas/sagas';
 import {
   loadStateFromLocalStorage,
@@ -19,6 +20,7 @@ const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_E
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  places: placesReducer,
   users: usersReducer,
   router: connectRouter(history),
 });

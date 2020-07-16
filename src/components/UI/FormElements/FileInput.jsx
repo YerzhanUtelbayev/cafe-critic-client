@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useField } from 'formik';
 
 const FileInput = ({ label, ...props }) => {
+  // eslint-disable-next-line no-unused-vars
   const [field, meta, helpers] = useField(props);
   const fileChangeHandler = (event) => {
     const { target } = event;
@@ -28,6 +29,7 @@ const FileInput = ({ label, ...props }) => {
           id="upload-photo"
           type="file"
           onChange={fileChangeHandler}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...props}
         />
       </label>
