@@ -5,7 +5,11 @@ import watchPlaceCreation from './placeSaga';
 
 export default function* watchSagas() {
   // Combine sagas with
-  yield all([watchUserRegistration, watchUserLogin, watchPlaceCreation]);
+  yield all([
+    watchUserRegistration(),
+    watchUserLogin(),
+    watchPlaceCreation(),
+  ]);
   // OR
   // yield all([fork(saga1)]);
 }
