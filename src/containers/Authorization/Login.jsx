@@ -1,5 +1,6 @@
 import React from 'react';
-import { Formik, Form, connect } from 'formik';
+import { connect } from 'react-redux';
+import { Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
