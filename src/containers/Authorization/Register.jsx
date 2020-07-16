@@ -46,7 +46,7 @@ const Register = ({ registerUser }) => {
           <FormInput name="street" label="Street" />
           <FormInput name="city" label="City" />
           <FormInput name="country" label="Country" />
-          <Button type="submit">SUbmit</Button>
+          <Button type="submit">Submit</Button>
         </Form>
       </Formik>
     </>
