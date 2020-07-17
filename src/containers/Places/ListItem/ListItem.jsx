@@ -7,8 +7,11 @@ import {
   Avatar,
   CardMedia,
   CardContent,
-  Typography,
+  Button,
+  CardActions,
+  IconButton,
 } from '@material-ui/core';
+import DetailsIcon from '@material-ui/icons/Details';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+    cursor: 'pointer',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -35,12 +39,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ListItem = ({
-  title, subHeader, image, children,
+  title, subHeader, image, children, handleProceed,
 }) => {
   const classes = useStyles();
 
   const getAvatarFromString = (string) => string.charAt(0);
-
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -49,11 +52,18 @@ const ListItem = ({
             {getAvatarFromString(title)}
           </Avatar>
         )}
-        title={title}
+        title={(
+          <Button color="primary" onClick={handleProceed}>{title}</Button>
+        )}
         subheader={subHeader && subHeader}
       />
-      <CardMedia className={classes.media} image={image} title={title} />
+      <CardMedia className={classes.media} image={image} title={title} onClick={handleProceed} />
       <CardContent>{children}</CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="view details" onClick={handleProceed}>
+          <DetailsIcon />
+        </IconButton>
+      </CardActions>
     </Card>
   );
 };
@@ -62,6 +72,7 @@ ListItem.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  handleProceed: PropTypes.func.isRequired,
   subHeader: PropTypes.node,
 };
 
