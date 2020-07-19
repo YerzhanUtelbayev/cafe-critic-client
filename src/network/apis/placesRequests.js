@@ -17,3 +17,11 @@ export const handleFetchPlaces = async () => {
   }
   return data;
 };
+
+export const handleFetchPlaceById = async (placeId) => {
+  const response = await axiosInstance.get(`/places/${placeId}`);
+  const { data } = response;
+  if (response.status >= 400) {
+    throw new Error(data.errors);
+  }
+};
