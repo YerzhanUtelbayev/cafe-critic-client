@@ -25,7 +25,7 @@ const PlacesList = ({ places }) => {
             promoImage,
             description,
             reviewsNumber,
-            ratings: { overall },
+            ratings,
           }) => (
             <ListItem
               key={_id}
@@ -34,17 +34,21 @@ const PlacesList = ({ places }) => {
               handleProceed={() => handleProceedToPlaceInfo(_id)}
             >
               <Typography>{description}</Typography>
-              <RatingStars
-                name="overallRating"
-                value={overall}
-                precision={0.1}
-              />
-              <Typography>
-                {`(${overall}, `}
-                {reviewsNumber > 1
-                  ? `${reviewsNumber} reviews`
-                  : `${reviewsNumber} review)`}
-              </Typography>
+              {ratings ? (
+                <>
+                  <RatingStars
+                    name="overallRating"
+                    value={ratings.overall}
+                    precision={0.1}
+                  />
+                  <Typography>
+                    {`(${ratings.overall}, `}
+                    {reviewsNumber > 1
+                      ? `${reviewsNumber} reviews`
+                      : `${reviewsNumber} review)`}
+                  </Typography>
+                </>
+              ) : null}
             </ListItem>
           ),
         )
