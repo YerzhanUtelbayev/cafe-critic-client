@@ -6,10 +6,22 @@ import { ConnectedRouter } from 'connected-react-router';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { store, history } from './store';
+import { store, history } from './store/configureStore';
+import axiosInstance from './network/apis/axios-api';
 
 import 'fontsource-roboto/latin-ext.css'; // TODO: Configure to load specific subsets
 import './index.css';
+
+axiosInstance.interceptors.request.use((config) => {
+  try {
+    const { user } = store.getState().users;
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = user && `Bearer ${user.token}`;
+  } catch (error) {
+    throw new Error(error);
+  }
+  return config;
+});
 
 const app = (
   <React.StrictMode>
