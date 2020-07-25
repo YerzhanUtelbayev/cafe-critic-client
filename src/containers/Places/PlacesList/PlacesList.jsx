@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import { PLACE } from '../../../utilities/propTypes';
@@ -8,15 +9,24 @@ import BASE_URL from '../../../utilities/constants';
 import ListItem from '../ListItem/ListItem';
 import RatingStars from '../../../components/UI/RatingStars/RatingStars';
 
+const useStyles = makeStyles(() => ({
+  textBox: {
+    maxHeight: '4.5rem',
+    overflow: 'hidden',
+  },
+  // TODO: Add text multi line truncation (clamping)
+}));
+
 const PlacesList = ({ places }) => {
   const history = useHistory();
+  const classes = useStyles();
 
   const handleProceedToPlaceInfo = (placeId) => {
     history.push(`/places/${placeId}`);
   };
 
   return (
-    <div>
+    <Grid container spacing={2}>
       {places && Array.isArray(places) && places.length > 0
         ? places.map(
           ({
@@ -27,33 +37,36 @@ const PlacesList = ({ places }) => {
             reviewsNumber,
             ratings,
           }) => (
-            <ListItem
-              key={_id}
-              title={title}
-              image={`${BASE_URL}/uploads/${thumbnail}`}
-              handleProceed={() => handleProceedToPlaceInfo(_id)}
-            >
-              <Typography>{description}</Typography>
-              {ratings ? (
-                <>
-                  <RatingStars
-                    name="overallRating"
-                    value={ratings.overall}
-                    precision={0.1}
-                  />
-                  <Typography>
-                    {`(${ratings.overall}, `}
-                    {reviewsNumber > 1
-                      ? `${reviewsNumber} reviews`
-                      : `${reviewsNumber} review)`}
-                  </Typography>
-                </>
-              ) : null}
-            </ListItem>
+            <Grid item md={4} sm={6} xs={12} key={_id}>
+              <ListItem
+                title={title}
+                image={`${BASE_URL}/uploads/${thumbnail}`}
+                handleProceed={() => handleProceedToPlaceInfo(_id)}
+              >
+                <Box component="div" className={classes.textBox}>
+                  <Typography>{description}</Typography>
+                </Box>
+                {ratings ? (
+                  <>
+                    <RatingStars
+                      name="overallRating"
+                      value={ratings.overall}
+                      precision={0.1}
+                    />
+                    <Typography>
+                      {`(${ratings.overall}, `}
+                      {reviewsNumber > 1
+                        ? `${reviewsNumber} reviews`
+                        : `${reviewsNumber} review)`}
+                    </Typography>
+                  </>
+                ) : null}
+              </ListItem>
+            </Grid>
           ),
         )
         : null}
-    </div>
+    </Grid>
   );
 };
 
