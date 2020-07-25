@@ -9,7 +9,7 @@ import PlacesList from './PlacesList/PlacesList';
 const Places = ({ places, fetchPlaces }) => {
   useEffect(() => {
     fetchPlaces();
-  }, []);
+  }, [fetchPlaces]);
 
   return (
     <>

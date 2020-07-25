@@ -13,6 +13,7 @@ export const PLACE = PropTypes.shape({
   title: PropTypes.string,
   description: PropTypes.string,
   promoImage: PropTypes.string,
+  thumbnail: PropTypes.string,
   reviewsNumber: PropTypes.number,
   ratings: PLACE_RATINGS,
 });

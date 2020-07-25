@@ -8,7 +8,7 @@ const PlaceFullInfo = ({ fetchPlaceById }) => {
   const { id } = useParams();
   useEffect(() => {
     fetchPlaceById(id);
-  }, []);
+  }, [fetchPlaceById, id]);
   return <div>Place Info will be displayed here</div>;
 };
 

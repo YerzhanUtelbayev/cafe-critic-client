@@ -22,7 +22,7 @@ const PlacesList = ({ places }) => {
           ({
             _id,
             title,
-            promoImage,
+            thumbnail,
             description,
             reviewsNumber,
             ratings,
@@ -30,7 +30,7 @@ const PlacesList = ({ places }) => {
             <ListItem
               key={_id}
               title={title}
-              image={`${BASE_URL}/uploads/${promoImage}`}
+              image={`${BASE_URL}/uploads/${thumbnail}`}
               handleProceed={() => handleProceedToPlaceInfo(_id)}
             >
               <Typography>{description}</Typography>
