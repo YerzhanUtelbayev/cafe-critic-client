@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
+  cardHeader: {
+    minHeight: '5.7rem',
+  },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -56,6 +59,7 @@ const ListItem = ({
           <Button color="primary" onClick={handleProceed}>{title}</Button>
         )}
         subheader={subHeader && subHeader}
+        className={classes.cardHeader}
       />
       <CardMedia className={classes.media} image={image} title={title} onClick={handleProceed} />
       <CardContent>{children}</CardContent>

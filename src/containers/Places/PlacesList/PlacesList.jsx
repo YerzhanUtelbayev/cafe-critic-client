@@ -60,7 +60,15 @@ const PlacesList = ({ places }) => {
                         : `${reviewsNumber} review)`}
                     </Typography>
                   </>
-                ) : null}
+                ) : (
+                  <>
+                    <RatingStars
+                      name="overallRating"
+                      disabled
+                    />
+                    <Typography>(Not rated yet)</Typography>
+                  </>
+                )}
               </ListItem>
             </Grid>
           ),
