@@ -28,9 +28,9 @@ function* sendPlaceCreationData({ payload }) {
   }
 }
 
-function* fetchPlacesData() {
+function* fetchPlacesData({ payload }) {
   try {
-    const placesList = yield call(handleFetchPlaces);
+    const placesList = yield call(handleFetchPlaces, payload);
     yield put(fetchPlacesSuccess(placesList));
   } catch (error) {
     yield put(fetchPlacesFailure(error));

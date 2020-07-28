@@ -8,7 +8,11 @@ import PlacesList from './PlacesList/PlacesList';
 
 const Places = ({ places, fetchPlaces }) => {
   useEffect(() => {
-    fetchPlaces();
+    const params = {
+      page: 1,
+      limit: 12,
+    };
+    fetchPlaces(params);
   }, [fetchPlaces]);
 
   return (
@@ -32,7 +36,7 @@ const mapStateToProps = ({ places }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPlaces: () => dispatch(fetchPlacesRequest()),
+  fetchPlaces: (requestParams) => dispatch(fetchPlacesRequest(requestParams)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Places);

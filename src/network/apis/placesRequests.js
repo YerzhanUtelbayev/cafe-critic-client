@@ -9,8 +9,8 @@ export const handlePlaceCreation = async (placeData) => {
   return response;
 };
 
-export const handleFetchPlaces = async () => {
-  const response = await axiosInstance.get('/places');
+export const handleFetchPlaces = async (params) => {
+  const response = await axiosInstance.get('/places', { params });
   const { data } = response;
   if (response.status >= 400) {
     throw new Error(data.errors);

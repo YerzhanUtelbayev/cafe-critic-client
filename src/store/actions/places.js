@@ -20,7 +20,10 @@ export const createPlaceFailure = (error) => ({
   payload: error,
 });
 
-export const fetchPlacesRequest = () => ({ type: FETCH_PLACES_REQUEST });
+export const fetchPlacesRequest = (requestParams) => ({
+  type: FETCH_PLACES_REQUEST,
+  payload: requestParams,
+});
 export const fetchPlacesSuccess = (placesList) => ({
   type: FETCH_PLACES_SUCCESS,
   payload: placesList,
