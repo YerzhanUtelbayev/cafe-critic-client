@@ -17,3 +17,15 @@ export const PLACE = PropTypes.shape({
   reviewsNumber: PropTypes.number,
   ratings: PLACE_RATINGS,
 });
+
+export const PAGINATION = PropTypes.shape({
+  totalDocs: PropTypes.number,
+  limit: PropTypes.number,
+  totalPages: PropTypes.number,
+  page: PropTypes.number,
+  pagingCounter: PropTypes.number,
+  hasPrevPage: PropTypes.bool,
+  hasNextPage: PropTypes.bool,
+  prevPage: PropTypes.number,
+  nextPage: PropTypes.number,
+});

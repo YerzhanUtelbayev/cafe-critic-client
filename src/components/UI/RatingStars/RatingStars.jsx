@@ -14,7 +14,7 @@ const RatingStars = ({
 
 RatingStars.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   precision: PropTypes.number,
   title: PropTypes.string,
 };
@@ -22,6 +22,7 @@ RatingStars.propTypes = {
 RatingStars.defaultProps = {
   title: null,
   precision: 1,
+  value: 0,
 };
 
 export default RatingStars;

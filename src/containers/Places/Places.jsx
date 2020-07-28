@@ -1,23 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Box } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
 import PropTypes from 'prop-types';
 
 import { fetchPlacesRequest } from '../../store/actions/places';
-import { PLACE } from '../../utilities/propTypes';
+import { PLACE, PAGINATION } from '../../utilities/propTypes';
 import PlacesList from './PlacesList/PlacesList';
 
-const Places = ({ places, fetchPlaces }) => {
+const Places = ({ places, pagination, fetchPlaces }) => {
+  const [page, setPage] = useState(1);
+  const { totalPages } = pagination;
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
   useEffect(() => {
     const params = {
-      page: 1,
+      page: page || 1,
       limit: 12,
     };
     fetchPlaces(params);
-  }, [fetchPlaces]);
+  }, [fetchPlaces, page]);
 
   return (
     <>
-      <PlacesList places={places} />
+      <Box py={3}>
+        <PlacesList places={places} />
+      </Box>
+
+      <Box my={3}>
+        <Pagination
+          count={totalPages}
+          page={page}
+          siblingCount={1}
+          boundaryCount={1}
+          onChange={handlePageChange}
+          color="primary"
+        />
+      </Box>
     </>
   );
 };
@@ -25,14 +47,17 @@ const Places = ({ places, fetchPlaces }) => {
 Places.propTypes = {
   fetchPlaces: PropTypes.func.isRequired,
   places: PropTypes.arrayOf(PLACE),
+  pagination: PAGINATION,
 };
 
 Places.defaultProps = {
   places: [],
+  pagination: {},
 };
 
 const mapStateToProps = ({ places }) => ({
   places: places.places,
+  pagination: places.pagination,
 });
 
 const mapDispatchToProps = (dispatch) => ({
