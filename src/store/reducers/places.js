@@ -9,14 +9,22 @@ import {
 
 const initialState = {
   places: [],
+  pagination: {},
   currentPlace: {},
   error: null,
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case FETCH_PLACES_SUCCESS:
-      return { ...state, places: [...payload], error: null };
+    case FETCH_PLACES_SUCCESS: {
+      const { docs, ...rest } = payload;
+      return {
+        ...state,
+        places: [...docs],
+        pagination: { ...rest },
+        error: null,
+      };
+    }
     case FETCH_PLACE_INFO_SUCCESS:
       return { ...state, currentPlace: { ...payload }, error: null };
     case CREATE_PLACE_SUCCESS:
