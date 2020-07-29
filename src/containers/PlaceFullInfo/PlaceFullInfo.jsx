@@ -5,9 +5,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import { fetchPlaceByIdRequest, resetCurrentPlace } from '../../store/actions/places';
+import {
+  fetchPlaceByIdRequest,
+  resetCurrentPlace,
+} from '../../store/actions/places';
 import { PLACE } from '../../utilities/propTypes';
 import BASE_URL from '../../utilities/constants';
+import CoffeeCupImage from '../../assets/images/img-coffee-cup.svg';
 
 const useStyles = makeStyles(() => ({
   promoImage: {
@@ -39,11 +43,17 @@ const PlaceFullInfo = ({ fetchPlaceById, currentPlace, resetPlace }) => {
         </Grid>
         <Grid item md={4}>
           <Box component="div">
-            <img
-              src={`${BASE_URL}/uploads/${promoImage}`}
-              alt={title}
-              className={classes.promoImage}
-            />
+            {currentPlace && (
+              <img
+                src={
+                  promoImage
+                    ? `${BASE_URL}/uploads/${promoImage}`
+                    : CoffeeCupImage
+                }
+                alt={title}
+                className={classes.promoImage}
+              />
+            )}
           </Box>
         </Grid>
       </Grid>
