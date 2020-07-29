@@ -15,6 +15,7 @@ export const PLACE = PropTypes.shape({
   promoImage: PropTypes.string,
   thumbnail: PropTypes.string,
   reviewsNumber: PropTypes.number,
+  imagesNumber: PropTypes.number,
   ratings: PLACE_RATINGS,
 });
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid, Box } from '@material-ui/core';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import PropTypes from 'prop-types';
 
 import { PLACE } from '../../../utilities/propTypes';
@@ -35,6 +36,7 @@ const PlacesList = ({ places }) => {
             thumbnail,
             description,
             reviewsNumber,
+            imagesNumber,
             ratings,
           }) => (
             <Grid item md={4} sm={6} xs={12} key={_id}>
@@ -62,13 +64,15 @@ const PlacesList = ({ places }) => {
                   </>
                 ) : (
                   <>
-                    <RatingStars
-                      name="overallRating"
-                      disabled
-                    />
+                    <RatingStars name="overallRating" disabled />
                     <Typography>(Not rated yet)</Typography>
                   </>
                 )}
+
+                <Box display="flex" alignItems="center" mt={1}>
+                  <PhotoCameraIcon />
+                  <Typography display="inline">{` ${imagesNumber} photos`}</Typography>
+                </Box>
               </ListItem>
             </Grid>
           ),
