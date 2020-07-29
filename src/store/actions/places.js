@@ -8,6 +8,7 @@ import {
   FETCH_PLACE_INFO_REQUEST,
   FETCH_PLACE_INFO_SUCCESS,
   FETCH_PLACE_INFO_FAILURE,
+  PLACE_INFO_INIT,
 } from './actionTypes';
 
 export const createPlaceRequest = (placeData) => ({
@@ -45,3 +46,5 @@ export const fetchPlaceByIdFailure = (error) => ({
   type: FETCH_PLACE_INFO_FAILURE,
   payload: error,
 });
+
+export const resetCurrentPlace = () => ({ type: PLACE_INFO_INIT });

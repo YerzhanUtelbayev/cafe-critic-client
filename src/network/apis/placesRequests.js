@@ -24,4 +24,5 @@ export const handleFetchPlaceById = async (placeId) => {
   if (response.status >= 400) {
     throw new Error(data.errors);
   }
+  return data;
 };

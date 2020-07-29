@@ -5,6 +5,7 @@ import {
   FETCH_PLACES_FAILURE,
   FETCH_PLACE_INFO_FAILURE,
   FETCH_PLACE_INFO_SUCCESS,
+  PLACE_INFO_INIT,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -25,10 +26,15 @@ export default (state = initialState, { type, payload }) => {
         error: null,
       };
     }
+
     case FETCH_PLACE_INFO_SUCCESS:
       return { ...state, currentPlace: { ...payload }, error: null };
+    case PLACE_INFO_INIT:
+      return { ...state, currentPlace: {}, error: null };
+
     case CREATE_PLACE_SUCCESS:
       return { ...state, error: null };
+
     case CREATE_PLACE_FAILURE:
     case FETCH_PLACES_FAILURE:
     case FETCH_PLACE_INFO_FAILURE:
